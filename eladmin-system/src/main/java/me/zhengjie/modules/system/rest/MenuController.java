@@ -97,6 +97,7 @@ public class MenuController {
     @PutMapping
     @PreAuthorize("@el.check('menu:edit')")
     public ResponseEntity update(@Validated(Menu.Update.class) @RequestBody Menu resources){
+//        用着方便啊，加@PreAuthorize("@el.check('menu:edit')")就进行权限检测，判定能否访问这个地址
         menuService.update(resources);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

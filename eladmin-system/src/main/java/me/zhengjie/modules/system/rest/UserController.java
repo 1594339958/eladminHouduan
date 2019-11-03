@@ -57,6 +57,8 @@ public class UserController {
         this.verificationCodeService = verificationCodeService;
     }
 
+
+    //使用Log注解就可以直接将用户操作记录到数据库中
     @Log("导出用户数据")
     @ApiOperation("导出用户数据")
     @GetMapping(value = "/download")

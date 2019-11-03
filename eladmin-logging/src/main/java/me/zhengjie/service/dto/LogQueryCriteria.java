@@ -12,8 +12,8 @@ import java.sql.Timestamp;
  */
 @Data
 public class LogQueryCriteria {
-
-    // 多字段模糊
+    //这个类是用来查询的，如果需要添加一个字段查询，只需要在这个类中添加就可以了。就相当于，根据这里的条件来查询。
+    // 多字段模糊，不是数据库中的字段
     @Query(blurry = "username,description,address,requestIp,method,params")
     private String blurry;
 

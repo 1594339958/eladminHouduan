@@ -49,6 +49,7 @@ public class DictServiceImpl implements DictService {
     @Override
     @Cacheable
     public Map<String, Object> queryAll(DictQueryCriteria dict, Pageable pageable){
+//        @Cacheable    主要方法的返回值将被加入缓存。在查询时，会先从缓存中获取，若不存在才再发起对数据库的访问
         Page<Dict> page = dictRepository.findAll((root, query, cb) -> QueryHelp.getPredicate(root, dict, cb), pageable);
         return PageUtil.toPage(page.map(dictMapper::toDto));
     }
@@ -88,6 +89,7 @@ public class DictServiceImpl implements DictService {
     @CacheEvict(allEntries = true)
     @Transactional(rollbackFor = Exception.class)
     public void delete(Long id) {
+//        @CacheEvict配置在函数上，通常用在删除方法上，用来从缓存中移除相应的数据
         dictRepository.deleteById(id);
     }
 
